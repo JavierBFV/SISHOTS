@@ -1,0 +1,114 @@
+identifierid,type,primaryname
+0,9,Unknown
+1,1,Abathur
+2,1,Anubarak
+3,1,Arthas
+4,1,Azmodan
+5,1,Brightwing
+6,1,Chen
+7,1,Diablo
+8,1,E.T.C.
+9,1,Falstad
+10,1,Gazlowe
+11,1,Illidan
+12,1,Jaina
+13,1,Johanna
+14,1,Kaelthas
+15,1,Kerrigan
+16,1,Kharazim
+17,1,Leoric
+18,1,LiLi
+19,1,Malfurion
+20,1,Muradin
+21,1,Murky
+22,1,Nazeebo
+23,1,Nova
+24,1,Raynor
+25,1,Rehgar
+26,1,Sgt.Hammer
+27,1,Sonya
+28,1,Stitches
+29,1,Sylvanas
+30,1,Tassadar
+31,1,TheButcher
+32,1,TheLostVikings
+33,1,Thrall
+34,1,Tychus
+35,1,Tyrael
+36,1,Tyrande
+37,1,Uther
+38,1,Valla
+39,1,Zagara
+40,1,Zeratul
+41,1,Rexxar
+42,1,Lt.Morales
+43,1,Artanis
+44,1,Cho
+45,1,Gall
+46,1,Lunara
+47,1,Greymane
+48,1,LiMing
+49,1,Xul
+50,1,Dehaka
+51,1,Tracer
+52,1,Chromie
+53,1,Medivh
+54,1,Guldan
+55,1,Auriel
+56,1,Alarak
+57,1,Zarya
+58,1,Samuro
+59,1,Varian
+60,1,Ragnaros
+61,1,Zuljin
+62,1,Valeera
+63,1,Lucio
+64,1,Probius
+65,1,Cassia
+66,1,Genji
+67,1,D.Va
+68,1,Malthael
+69,1,Stukov
+70,1,Garrosh
+71,1,KelThuzad
+72,1,Ana
+73,1,Junkrat
+74,1,Alexstrasza
+75,1,Hanzo
+76,1,Blaze
+77,1,Maiev
+78,1,Fenix
+79,1,Deckard
+80,1,Yrel
+81,1,Whitemane
+82,1,Mephisto
+83,1,MalGanis
+84,1,Orphea
+85,1,Imperius
+86,1,Anduin
+87,1,Qhira
+88,1,Deathwing
+89,1,Mei
+90,1,Hogger
+1001,0,"Battlefield of Eternity"
+1002,0,"Blackhearts Bay"
+1003,0,"Cursed Hollow"
+1004,0,"Dragon Shire"
+1005,0,"Garden of Terror"
+1006,0,"Haunted Mines"
+1007,0,"Infernal Shrines"
+1008,0,"Sky Temple"
+1009,0,"Tomb of the Spider Queen"
+1010,0,"Towers of Doom"
+1011,0,"Lost Cavern"
+1012,0,"Braxis Holdout"
+1013,0,"Warhead Junction"
+1014,0,"Silver City"
+1015,0,"Braxis Outpost"
+1016,0,"Hanamura Temple"
+1017,0,"Checkpoint: Hanamura"
+1018,0,"Pull Party"
+1019,0,"Volskaya Foundry"
+1020,0,"Industrial District"
+1021,0,"Escape From Braxis"
+1022,0,"Alterac Pass"
