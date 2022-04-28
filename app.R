@@ -7,6 +7,7 @@ library(shinyjs)
 #Nodo
 library(data.tree)
 #Otros
+
 ################################################# UI #################################################
 
 ## Variables globales ##
