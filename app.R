@@ -399,6 +399,29 @@ modelo_best_winrate = function(tablero){
   #No se deberia de llegar a esta parte de la funcion
   stop("Se ha pasado por todos los heroes en modelo winrate y ninguno fue seleccionado")
 }
+realizar_movimiento_nodo = function(nodo, heroe){
+  tablero = realizar_movimiento(nodo$tablero, heroe)
+  #Se crea variable booleana que indica si el tablero esta dentro de los hijos
+  is_tablero_en_hijos = FALSE
+  #Se crea una variable que contendra la direccion del nodo que contiene el mismo tablero escogido.
+  nodo_tmp = NULL
+  #Buscar si movimiento ya tiene un nodo en el arbol
+  for(nodo_hijo_actual in nodo$children){
+    if(identical(tablero, nodo_hijo_actual$tablero)){
+      is_tablero_en_hijos = TRUE
+      nodo_tmp = nodo_hijo_actual}}
+  if(is_tablero_en_hijos){
+    return(nodo_tmp)}
+  else{
+    #Agregar un nodo hijo que tenga el estado
+    nodo_tmp = crear_nodo(cont_nodos, tablero)
+    nodo$AddChildNode(nodo_tmp)
+    cont_nodos <<- cont_nodos+1
+    #Si se alcanzaron todos los estados
+    if(length(nodo$children) >= cant_por_Seleccionar){
+      nodo$is_extended = TRUE}
+    return(nodo_tmp)}
+}
 
 ################################################# UI #################################################
 
@@ -842,7 +865,7 @@ server = function(input, output, session)
   valoresReactivos = reactiveValues(
     isPartidaTerminada = FALSE,
     turno = 0,
-    nodo = "crear nodo",
+    nodo = NULL,
     banderaUsuario = 0,
     banderaMCTS = 0,
     banderaRandom = 0,
@@ -1136,6 +1159,29 @@ server = function(input, output, session)
     valoresReactivos$seleccion5Equipo2 = "randomPJ"
     valoresReactivos$isPartidaTerminada = FALSE
     #Inicio de la partida
+    switch(input$map, 
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1001"))}, 
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1002"))}, 
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1003"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1004"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1005"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1006"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1007"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1008"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1009"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1010"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1011"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1012"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1013"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1014"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1015"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1016"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1017"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1018"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1019"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1020"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1021"))},
+      {valoresReactivos$nodo = crear_nodo("raiz", crear_tablero(mapid = "1022"))})
     valoresReactivos$turno = 1})
   
   observeEvent(valoresReactivos$turno, {
@@ -1265,7 +1311,8 @@ server = function(input, output, session)
   observeEvent(valoresReactivos$banderaRandom, {
     if(valoresReactivos$banderaRandom > 0){
       print("Seleccion aleatoria")
-      heroeEscogido = "randomPJ"
+      heroeEscogido = modelo_aleatorio(valoresReactivos$nodo$tablero)
+      valoresReactivos$nodo = realizar_movimiento_nodo(valoresReactivos$nodo, heroeEscogido)
       #Cambiar la imagen mostrada.
       switch(valoresReactivos$turno,
         {valoresReactivos$baneo1 = heroeEscogido},
@@ -1312,6 +1359,7 @@ server = function(input, output, session)
       shinyjs::enable("usuarios1")
       shinyjs::enable("usuarios2")
       shinyjs::hide("mensajeInicioPartida")
+      print(isolate({valoresReactivos$nodo$tablero}))
       "Termino"}
   })
 }
