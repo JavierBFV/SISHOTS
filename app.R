@@ -377,6 +377,29 @@ get_best_move = function(nodo, constante_exploracion, booleano_politica = TRUE){
     return(tmp_best_moves[[sample(1:(length(tmp_best_moves)), 1)]])}
 }
 
+## Modelos ##
+
+#Seleccion de heroes aleatoria.
+#Ingresa un tablero.
+#Retorna un heroe elegido de manera aleatoria que no haya sido elegido antes
+modelo_aleatorio = function(tablero){
+  heroe_escogido = sample(data_Keys_Heroes$primaryname, 1)
+  while(heroe_escogido %in% tablero[[2]] || heroe_escogido %in% tablero[[3]]){
+    heroe_escogido = sample(data_Keys_Heroes$primaryname, 1)}
+  return(heroe_escogido)
+}
+#Seleccion de heroe con mejor winrate
+#Ingresa un tablero.
+#Retorna el heroe no seleccionado con mayor winrate.
+modelo_best_winrate = function(tablero){
+  lista_heroes_ordenada = data_Keys_Heroes$primaryname[order(data_Keys_Heroes$`round(peso_heroes2)`, decreasing=TRUE)]
+  for(heroe_actual in lista_heroes_ordenada){
+    if( !(heroe_actual %in% tablero[[2]]) && !(heroe_actual %in% tablero[[3]]) ){
+      return(heroe_actual)}}
+  #No se deberia de llegar a esta parte de la funcion
+  stop("Se ha pasado por todos los heroes en modelo winrate y ninguno fue seleccionado")
+}
+
 ################################################# UI #################################################
 
 ######## FUNCTIONS ########
@@ -1243,6 +1266,7 @@ server = function(input, output, session)
     if(valoresReactivos$banderaRandom > 0){
       print("Seleccion aleatoria")
       heroeEscogido = "randomPJ"
+      #Cambiar la imagen mostrada.
       switch(valoresReactivos$turno,
         {valoresReactivos$baneo1 = heroeEscogido},
         {valoresReactivos$baneo2 = heroeEscogido},
